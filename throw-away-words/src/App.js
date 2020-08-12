@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import TextEnterer from './components/TextEnterer/TextEnterer'
-import DeleteButton from './components/Buttons/DeleteButton/DeleteButton'
 import SaveButton from './components/Buttons/SaveButton/SaveButton'
+import TextDisplay from './components/TextDisplay/TextDisplay'
 
 class App extends Component {
   state = {
     enteredText: '',
-    throwAwayText: ''
+    throwAwayText: '',
+    displayInput: true
   }
 
   textChangeHandler = (event) => {
@@ -15,23 +16,40 @@ class App extends Component {
   }
 
   saveThrowAwayTextHandler = () => {
-    this.setState({ throwAwayText: this.state.enteredText })
+    this.setState({ throwAwayText: this.state.enteredText, displayInput: false })
   }
 
   deleteThrowAwayTextHandler = () => {
-    this.setState({ throwAwayText: '' })
+    this.setState({ throwAwayText: '', displayInput: true })
   }
 
   render() {
+    let currComp = null;
+    if (this.state.displayInput) {
+      currComp =
+        <div>
+          <TextEnterer textHandler={this.textChangeHandler} />
+          <SaveButton clickHandler={this.saveThrowAwayTextHandler} />
+        </div>
+    } else {
+      currComp =
+        <div>
+          <TextDisplay
+            textToDisplay={this.state.throwAwayText}
+            clicked={this.deleteThrowAwayTextHandler} />
+        </div>
+    }
     return (
       <div className="App">
-        <h1>Test</h1>
-        <TextEnterer textHandler={this.textChangeHandler} outputText={this.state.enteredText} />
-        <div>
+        <h1>Throw Away Words</h1>
+        {/* <div>
+          <TextEnterer textHandler={this.textChangeHandler} />
           <SaveButton clickHandler={this.saveThrowAwayTextHandler} />
-          <DeleteButton clickHandler={this.deleteThrowAwayTextHandler} />
         </div>
-        <h3> {this.state.throwAwayText} </h3>
+        <div>
+          <TextDisplay textToDisplay={this.state.throwAwayText} />
+        </div> */}
+        {currComp}
       </div>
     );
   }
