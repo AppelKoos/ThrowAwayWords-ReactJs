@@ -23,13 +23,20 @@ class App extends Component {
     this.setState({ throwAwayText: '', displayInput: true })
   }
 
+
   render() {
     let currComp = null;
+    let saveBtn = null
+
+    if (this.state.enteredText !== '') {
+      saveBtn = <SaveButton clickHandler={this.saveThrowAwayTextHandler} />
+    }
+    
     if (this.state.displayInput) {
       currComp =
         <div>
           <TextEnterer textHandler={this.textChangeHandler} />
-          <SaveButton clickHandler={this.saveThrowAwayTextHandler} />
+          {saveBtn}
         </div>
     } else {
       currComp =
@@ -39,16 +46,10 @@ class App extends Component {
             clicked={this.deleteThrowAwayTextHandler} />
         </div>
     }
+
     return (
       <div className="App">
         <h1>Throw Away Words</h1>
-        {/* <div>
-          <TextEnterer textHandler={this.textChangeHandler} />
-          <SaveButton clickHandler={this.saveThrowAwayTextHandler} />
-        </div>
-        <div>
-          <TextDisplay textToDisplay={this.state.throwAwayText} />
-        </div> */}
         {currComp}
       </div>
     );
