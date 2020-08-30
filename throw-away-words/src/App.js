@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import TextEnterer from './components/TextEnterer/TextEnterer'
 import SaveButton from './components/Buttons/SaveButton/SaveButton'
 import TextDisplay from './components/TextDisplay/TextDisplay'
@@ -48,8 +48,8 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <h1>Throw Away Words</h1>
+      <div className={styles.App}>
+        <h1 className={styles.h1}>Throw Away Words</h1>
         {currComp}
       </div>
     );
