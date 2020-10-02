@@ -1,0 +1,24 @@
+.TextDisplay{
+    color: rgb(176, 255, 152);
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid black;
+    margin: 0 auto;
+    height: auto;
+    width: 10%;
+    transition: all 0.3s ease-out;
+}
+
+.TextDisplay:hover, .TextDisplay:active {
+    background-color: #ccc;
+}
+
+.TextShow {
+    opacity: 1;
+}
+
+.TextDelete {
+    width: 15%;
+    height: 15%;
+    opacity: 0;
+}

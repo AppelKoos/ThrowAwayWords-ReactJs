@@ -1,7 +1,10 @@
 import React from 'react';
+import classes from './TextDisplay.module.css'
+
 const TextDisplay = (props) => {
+
     return (
-        <div onClick={props.clicked}>
+        <div className={classes.TextDisplay} onClick={props.clicked}>
             {props.textToDisplay}
         </div>
     )
